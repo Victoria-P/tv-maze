@@ -1,0 +1,138 @@
+/* ========================================
+   SCSS VARIABLES & MIXINS
+   ======================================== */
+
+/* ---- BASE COLORS ---- */
+$color-bg0: #060813;
+$color-bg1: #090b18;
+$color-bg2: #0c1026;
+$color-text-base: #ffffff;
+$color-accent: #2f81ff;
+
+/* ---- OPACITY FUNCTION ---- */
+@function rgba-white($alpha) {
+  @return rgba($color-text-base, $alpha);
+}
+
+/* ---- TEXT COLORS ---- */
+$color-text: rgba-white(0.92);
+$color-muted: rgba-white(0.62);
+
+/* ---- SURFACE COLORS  ---- */
+$color-surface: rgba-white(0.06);
+$color-surface-2: rgba-white(0.09);
+$color-border: rgba-white(0.1);
+$color-surface-opacity-6: rgba-white(0.06);
+$color-surface-opacity-12: rgba-white(0.12);
+$color-border-opacity-12: rgba-white(0.12);
+$color-border-opacity-18: rgba-white(0.18);
+$color-border-opacity-22: rgba-white(0.22);
+
+/* ---- ACCENT COLORS ---- */
+$color-accent-soft: rgba($color-accent, 0.22);
+
+/* ---- RADIUS SCALE ---- */
+$radius-xs: 12px;
+$radius-sm: 14px;
+$radius-md: 20px;
+$radius-lg: 28px;
+$radius-full: 999px;
+
+/* ---- SHADOWS ---- */
+$shadow-sm: 0 8px 18px rgba(0, 0, 0, 0.3);
+$shadow-md: 0 12px 34px rgba(0, 0, 0, 0.45);
+$shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.55);
+
+/* ---- LAYOUT ---- */
+$container-width: 1180px;
+$spacing-scale: (0, 4, 6, 8, 10, 12, 14, 18, 40);
+
+/* ---- TYPOGRAPHY ---- */
+$font-family:
+  ui-sans-serif,
+  system-ui,
+  -apple-system,
+  Segoe UI,
+  Roboto,
+  Arial;
+$font-weight-normal: 400;
+$font-weight-semibold: 700;
+$font-weight-bold: 900;
+
+/* ========================================
+   CSS CUSTOM PROPERTIES 
+   ======================================== */
+:root {
+  /* colors */
+  --bg0: #{$color-bg0};
+  --bg1: #{$color-bg1};
+  --bg2: #{$color-bg2};
+  --text: #{$color-text};
+  --muted: #{$color-muted};
+  --surface: #{$color-surface};
+  --surface-2: #{$color-surface-2};
+  --border: #{$color-border};
+  --surface-opacity-6: #{$color-surface-opacity-6};
+  --surface-opacity-12: #{$color-surface-opacity-12};
+  --border-opacity-12: #{$color-border-opacity-12};
+  --border-opacity-18: #{$color-border-opacity-18};
+  --border-opacity-22: #{$color-border-opacity-22};
+  --accent: #{$color-accent};
+  --accent-soft: #{$color-accent-soft};
+
+  /* radius */
+  --r-sm: #{$radius-xs};
+  --r-md: #{$radius-sm};
+  --r-lg: #{$radius-md};
+  --r-xl: #{$radius-lg};
+
+  /* shadows */
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+
+  /* layout */
+  --container: #{$container-width};
+}
+
+/* ========================================
+   MIXINS
+   ======================================== */
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin glass-effect {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+}
+
+@mixin overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
