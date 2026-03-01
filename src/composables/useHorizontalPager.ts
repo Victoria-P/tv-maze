@@ -43,6 +43,14 @@ export function useHorizontalPager(options: Options = {}) {
     raf = requestAnimationFrame(updateMetrics);
   };
 
+  const onWheel = (e: WheelEvent) => {
+    const el = scroller.value;
+    if (!el) return;
+
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    el.scrollBy({ left: delta, behavior: 'auto' });
+  };
+
   const scrollByPage = (dir: -1 | 1) => {
     const el = scroller.value;
     if (!el) return;
@@ -83,6 +91,7 @@ export function useHorizontalPager(options: Options = {}) {
     totalPages,
     updateMetrics,
     onScroll,
+    onWheel,
     scrollByPage,
     resetToStart,
   };

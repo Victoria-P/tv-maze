@@ -7,7 +7,8 @@ import Card from '@/components/common/Card.vue';
 
 const props = defineProps<{ title: string; shows: Show[] }>();
 
-const { scroller, page, totalPages, onScroll, scrollByPage, resetToStart } = useHorizontalPager();
+const { scroller, page, totalPages, onScroll, scrollByPage, resetToStart, onWheel } =
+  useHorizontalPager();
 
 watch(
   () => props.shows.length,
@@ -19,7 +20,7 @@ watch(
 </script>
 
 <template>
-  <section class="carousel-section">
+  <section class="carousel-section" @wheel.passive="onWheel">
     <div class="flex flex-between items-center">
       <h2 class="heading-md m-0">{{ title }}</h2>
 

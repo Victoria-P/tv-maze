@@ -171,6 +171,34 @@ describe('useHorizontalPager', () => {
     });
   });
 
+  describe('onWheel handler', () => {
+    it('should translate wheel delta into horizontal scroll', () => {
+      const { onWheel, scroller } = useHorizontalPager();
+      scroller.value = mockElement;
+
+      const event = { deltaX: 0, deltaY: 100 } as unknown as WheelEvent;
+      onWheel(event);
+
+      expect(mockElement.scrollBy).toHaveBeenCalledWith({ left: 100, behavior: 'auto' });
+    });
+
+    it('prefers larger axis when both deltas exist', () => {
+      const { onWheel, scroller } = useHorizontalPager();
+      scroller.value = mockElement;
+
+      const event = { deltaX: 50, deltaY: 20 } as unknown as WheelEvent;
+      onWheel(event);
+
+      expect(mockElement.scrollBy).toHaveBeenCalledWith({ left: 50, behavior: 'auto' });
+    });
+
+    it('does nothing when scroller is null', () => {
+      const { onWheel } = useHorizontalPager();
+      const event = { deltaX: 0, deltaY: 100 } as unknown as WheelEvent;
+      expect(() => onWheel(event)).not.toThrow();
+    });
+  });
+
   describe('lifecycle', () => {
     it('should use ResizeObserver when available and scroller exists', () => {
       const observeMock = vi.fn();
